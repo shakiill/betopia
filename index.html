@@ -92,9 +92,11 @@
                 <input type="text" id="role" placeholder="Ex: Project Manager">
             </div>
 
-            <div style="display: flex; gap: 10px; margin-top: 2rem;">
                 <button class="btn btn-upload" id="backToStep1" style="flex:1;">&larr; Back</button>
-                <button class="btn btn-download" id="download" style="flex:2;">Download PNG</button>
+                <div style="flex:2; display: flex; gap: 10px;">
+                    <button class="btn btn-download" id="download" style="flex:1;">Download</button>
+                    <button class="btn" id="shareBtn" style="flex:1; background: #25D366; color: white;">Share</button>
+                </div>
             </div>
              <div style="margin-top: 10px;">
                 <button class="btn btn-upload" id="reset" style="width:100%; background: #fdf2f2; color: #d32f2f;">Start Over</button>
@@ -138,6 +140,7 @@
     const goToStep2Btn = document.getElementById('goToStep2');
     const backToStep1Btn = document.getElementById('backToStep1');
     const downloadBtn = document.getElementById('download');
+    const shareBtn = document.getElementById('shareBtn');
     const resetBtn = document.getElementById('reset');
 
     // State
@@ -277,6 +280,41 @@
         } catch (err) {
             console.error(err);
             alert("Download error.");
+        }
+    });
+
+    shareBtn.addEventListener('click', () => {
+        try {
+            renderFinal();
+            
+            mainCanvas.toBlob(async (blob) => {
+                if (!blob) {
+                    alert("Error generating image.");
+                    return;
+                }
+                
+                const file = new File([blob], 'Betopia_NewYear_Card.png', { type: 'image/png' });
+                const shareData = {
+                    files: [file],
+                    title: 'Betopia New Year Card',
+                    text: 'Check out my card created with Betopia Frame Maker!'
+                };
+
+                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                    try {
+                        await navigator.share(shareData);
+                    } catch (error) {
+                        if (error.name !== 'AbortError') {
+                            alert("Error sharing: " + error.message);
+                        }
+                    }
+                } else {
+                    alert("Direct sharing is not supported on this browser or device. Please use the Download button.");
+                }
+            }, 'image/png', 1.0);
+        } catch (err) {
+            console.error(err);
+            alert("Share failed.");
         }
     });
 
