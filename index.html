@@ -109,9 +109,9 @@
 <script>
     // --- Configuration ---
     const MAIN_SIZE = 1080;
-    const HOLE_CENTER_X = 750;
+    const HOLE_CENTER_X = 810;
     const HOLE_CENTER_Y = 485;
-    const HOLE_RADIUS = 290;
+    const HOLE_RADIUS = 190;
     const FRAME_SRC = 'frame.png';
 
     // --- Elements ---
@@ -154,7 +154,7 @@
         
         cropper = new Cropper(imageToCrop, {
             aspectRatio: 1, // Square crop for the circular hole
-            viewMode: 1.5,
+            viewMode: 1,
             dragMode: 'move',
             autoCropArea: 0.8,
             restore: false,
