@@ -111,7 +111,7 @@
     const MAIN_SIZE = 1080;
     const HOLE_CENTER_X = 810;
     const HOLE_CENTER_Y = 485;
-    const HOLE_RADIUS = 190;
+    const HOLE_RADIUS = 250;
     const FRAME_SRC = 'frame.png';
 
     // --- Elements ---
@@ -156,7 +156,7 @@
             aspectRatio: 1, // Square crop for the circular hole
             viewMode: 1,
             dragMode: 'move',
-            autoCropArea: 0.8,
+            autoCropArea: 1,
             restore: false,
             guides: true,
             center: true,
@@ -182,7 +182,7 @@
         // Draw the square cropped image to fill the circle diameter
         // Circle Diameter = 451 * 2 = 902
         // We draw the square image centered at the hole center
-        const destSize = HOLE_RADIUS * 2;
+        const destSize = HOLE_RADIUS * 2.2;
         mainCtx.drawImage(croppedResult, HOLE_CENTER_X - HOLE_RADIUS, HOLE_CENTER_Y - HOLE_RADIUS, destSize, destSize);
         mainCtx.restore();
 
