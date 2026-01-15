@@ -111,10 +111,10 @@
 <script>
     // --- Configuration ---
     const MAIN_SIZE = 1080;
-    const HOLE_CENTER_X = 822;
+    const HOLE_CENTER_X = 820;
     const HOLE_CENTER_Y = 500;
     const HOLE_RADIUS = 265;
-    const FRAME_SRC = 'frame.png';
+    const FRAME_SRC = 'frame2.png';
 
     // --- Elements ---
     const mainCanvas = document.getElementById('mainCanvas');
@@ -198,11 +198,11 @@
             mainCtx.textAlign = "left";
             
             mainCtx.font = "bold 32px 'Inter', sans-serif";
-            mainCtx.fillText(nameInput.value.toUpperCase(), 45, 635);
+            mainCtx.fillText(nameInput.value.toUpperCase(), 45, 765);
             
             mainCtx.font = "500 24px 'Inter', sans-serif";
             mainCtx.fillStyle = "#666";
-            mainCtx.fillText(roleInput.value, 45, 675);
+            mainCtx.fillText(roleInput.value, 45, 805);
         }
     }
 
@@ -274,7 +274,7 @@
         try {
             renderFinal();
             const link = document.createElement('a');
-            link.download = 'Betopia_NewYear_Card.png';
+            link.download = 'Betopia_career_Card.png';
             link.href = mainCanvas.toDataURL('image/png', 1.0);
             link.click();
         } catch (err) {
